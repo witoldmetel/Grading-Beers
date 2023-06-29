@@ -1,0 +1,20 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// TODO: define fields and relations
+model User {
+}
+
+// TODO: define fields and relations
+model Course {
+}
+
+// TODO: define fields and relations
+model Test {
+}
+
+// TODO: define fields and relations
+model TestResult {
+}

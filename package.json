@@ -22,7 +22,7 @@
     "typescript": "5.1.6"
   },
   "scripts": {
-    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "dev": "ts-node-dev --respawn ./src/server.ts",
     "seed": "ts-node ./src/seed.ts",
     "test": "jest",
     "start": "docker-compose up -d",

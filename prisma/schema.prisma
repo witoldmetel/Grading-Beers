@@ -3,18 +3,65 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// TODO: define fields and relations
 model User {
+  id        Int                @id @default(autoincrement())
+  email     String             @unique
+  firstName String
+  lastName  String
+  social    Json
+  updatedAt DateTime           @updatedAt
+  createdAt DateTime           @default(now())
+  coursers  CourseEnrollment[]
+
+  testResults TestResult[] @relation(name: "results")
+  testsGraded TestResult[] @relation(name: "graded")
 }
 
-// TODO: define fields and relations
 model Course {
+  id            Int                @id @default(autoincrement())
+  name          String
+  courseDetails String
+  userId        Int?
+  members       CourseEnrollment[]
+  tests         Test[]
 }
 
-// TODO: define fields and relations
+model CourseEnrollment {
+  createdAt DateTime @default(now())
+  role      UserRole
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  courseId  Int
+  course    Course   @relation(fields: [courseId], references: [id])
+
+  @@id([userId, courseId, role])
+}
+
+enum UserRole {
+  STUDENT
+  TEACHER
+}
+
 model Test {
+  id        Int      @id @default(autoincrement())
+  updatedAt DateTime @updatedAt
+  name      String
+  date      DateTime
+
+  courseId    Int
+  course      Course       @relation(fields: [courseId], references: [id])
+  testResults TestResult[]
 }
 
-// TODO: define fields and relations
 model TestResult {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  result    Int // percentage precise to one decimal point
+
+  testId    Int
+  test      Test @relation(fields: [testId], references: [id])
+  studentId Int
+  student   User @relation(name: "results", fields: [studentId], references: [id])
+  graderId  Int
+  grader    User @relation(name: "graded", fields: [graderId], references: [id])
 }

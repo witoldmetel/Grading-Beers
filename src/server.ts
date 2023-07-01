@@ -1,5 +1,6 @@
 import Hapi from "@hapi/hapi";
 import statusPlugin from "./plugins/status";
+import prismaPlugin from "./plugins/prisma";
 
 const server: Hapi.Server = Hapi.server({
   port: process.env.PORT || 3000,
@@ -7,7 +8,7 @@ const server: Hapi.Server = Hapi.server({
 });
 
 export async function start(): Promise<Hapi.Server> {
-  await server.register([statusPlugin]);
+  await server.register([statusPlugin, prismaPlugin]);
 
   await server.start();
   console.log(`Server running on ${server.info.uri}`);

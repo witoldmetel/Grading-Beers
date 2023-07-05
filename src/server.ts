@@ -1,6 +1,7 @@
 import Hapi from "@hapi/hapi";
 import statusPlugin from "./plugins/status";
 import prismaPlugin from "./plugins/prisma";
+import usersPlugin from "./plugins/users";
 
 const server: Hapi.Server = Hapi.server({
   port: process.env.PORT || 3000,
@@ -8,7 +9,8 @@ const server: Hapi.Server = Hapi.server({
 });
 
 export async function start(): Promise<Hapi.Server> {
-  await server.register([statusPlugin, prismaPlugin]);
+  // order of plugins doesn't matter, if we need specific plugin loaded first we use 'dependencies' ---> check usersPlugin
+  await server.register([statusPlugin, prismaPlugin, usersPlugin]);
 
   await server.start();
   console.log(`Server running on ${server.info.uri}`);

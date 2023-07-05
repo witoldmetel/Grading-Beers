@@ -1,6 +1,7 @@
 import Hapi from "@hapi/hapi";
 import { PrismaClient } from "@prisma/client";
 
+// Define prisma in the Hapi server ---> Module Augmentation
 declare module "@hapi/hapi" {
   interface ServerApplicationState {
     prisma: PrismaClient;

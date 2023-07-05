@@ -1,6 +1,8 @@
 import Hapi from "@hapi/hapi";
 import { PrismaClient } from "@prisma/client";
 
+import prisma from "../client";
+
 // Define prisma in the Hapi server ---> Module Augmentation
 declare module "@hapi/hapi" {
   interface ServerApplicationState {
@@ -12,8 +14,6 @@ declare module "@hapi/hapi" {
 const plugin: Hapi.Plugin<undefined> = {
   name: "app/prisma",
   register: async function (server: Hapi.Server) {
-    const prisma = new PrismaClient();
-
     server.app.prisma = prisma;
 
     server.ext({

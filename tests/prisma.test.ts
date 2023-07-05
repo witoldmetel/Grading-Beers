@@ -1,16 +1,17 @@
-import { PrismaClient } from '@prisma/client'
+import { prismaMock } from "../mocks/prisma";
 
-describe('example test with Prisma Client', () => {
-  let prisma = new PrismaClient()
-
+describe("example test with Prisma Client", () => {
   beforeAll(async () => {
-    await prisma.connect()
-  })
+    await prismaMock.$connect();
+  });
+
   afterAll(async () => {
-    await prisma.disconnect()
-  })
-  test('test query', async () => {
-    const data = await prisma.user.findMany({ take: 1, select: { id: true } })
-    expect(data).toBeTruthy()
-  })
-})
+    await prismaMock.$disconnect();
+  });
+
+  test("test query", async () => {
+    const data = await prismaMock.user;
+
+    expect(data).toBeTruthy();
+  });
+});

@@ -7,6 +7,7 @@ import prismaPlugin from "./plugins/prisma";
 import usersPlugin from "./plugins/users";
 import authPlugin from "./plugins/auth";
 import emailPlugin from "./plugins/email";
+import testResultsPlugin from "./plugins/test-results";
 
 dotenv.config();
 
@@ -40,6 +41,7 @@ export async function createServer(): Promise<Hapi.Server> {
     statusPlugin,
     usersPlugin,
     emailPlugin,
+    testResultsPlugin,
   ]);
   await server.initialize();
 

@@ -8,6 +8,9 @@ import usersPlugin from "./plugins/users";
 import authPlugin from "./plugins/auth";
 import emailPlugin from "./plugins/email";
 import testResultsPlugin from "./plugins/test-results";
+import coursesPlugin from "./plugins/courses";
+import testsPlugin from "./plugins/tests";
+import usersEnrollmentPlugin from "./plugins/users-enrollment";
 
 dotenv.config();
 
@@ -27,7 +30,6 @@ export async function createServer(): Promise<Hapi.Server> {
         process.env.CI === "true" || process.env.TEST === "true"
           ? false
           : undefined,
-      prettyPrint: process.env.NODE_ENV !== "production",
       // Redact Authorization headers, see https://getpino.io/#/docs/redaction
       redact: ["req.headers.authorization"],
     },
@@ -42,6 +44,9 @@ export async function createServer(): Promise<Hapi.Server> {
     usersPlugin,
     emailPlugin,
     testResultsPlugin,
+    coursesPlugin,
+    testsPlugin,
+    usersEnrollmentPlugin,
   ]);
   await server.initialize();
 

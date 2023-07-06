@@ -51,3 +51,4 @@ npm install
 
 - [Part 1](https://www.prisma.io/blog/backend-prisma-typescript-orm-with-postgresql-data-modeling-tsjs1ps7kip1?utm_source=youtube&utm_medium=youtube&utm_campaign=modern-backend-series) - Data Modeling, CRUD and Aggregations
 - [Part 2](https://www.prisma.io/blog/backend-prisma-typescript-orm-with-postgresql-rest-api-validation-dcba1ps7kip3) - REST, Validation, and Testing
+- [Part 3](https://www.prisma.io/blog/backend-prisma-typescript-orm-with-postgresql-auth-mngp1ps7kip4) - Authentication & Authorization

@@ -29,10 +29,6 @@ describe("POST /users - create user", () => {
       },
     });
 
-    console.log(response);
-
-    userId = JSON.parse(response.payload)?.id;
-
     expect(response.statusCode).toEqual(200);
   });
 
@@ -45,30 +41,34 @@ describe("POST /users - create user", () => {
     expect(response.statusCode).toEqual(404);
   });
 
-  test.skip("get user returns user", async () => {
+  test("get user returns user", async () => {
     const response = await server.inject({
       method: "GET",
       url: `/users/${userId}`,
     });
+
     expect(response.statusCode).toEqual(200);
+
     const user = JSON.parse(response.payload);
 
     expect(user.id).toBe(userId);
   });
 
-  test.skip("get user fails with invalid id", async () => {
+  test("get user fails with invalid id", async () => {
     const response = await server.inject({
       method: "GET",
       url: "/users/a123",
     });
+
     expect(response.statusCode).toEqual(400);
   });
 
-  test.skip("delete user", async () => {
+  test("delete user", async () => {
     const response = await server.inject({
       method: "DELETE",
       url: `/users/${userId}`,
     });
+
     expect(response.statusCode).toEqual(204);
   });
 });
